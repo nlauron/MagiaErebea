@@ -41,6 +41,11 @@
       "requirement": "optional"
     },
     {
+      "name": "/actions/default/in/JoystickPosition",
+      "type": "vector2",
+      "requirement": "mandatory"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
