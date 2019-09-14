@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.magiaerebea.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\Niko\\Documents\\MagiaErebea\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "Magia Erebea [Testing]"
+        }
+      }
+    }
+  ]
+}
