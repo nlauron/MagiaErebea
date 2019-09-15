@@ -8,7 +8,6 @@ public class VRController : MonoBehaviour
     public float m_Sensitivity = 0.1f;
     public float m_MaxSpeed = 1.0f;
 
-    //public SteamVR_Action_Boolean m_MoveTilt = null;
     public SteamVR_Action_Vector2 m_MoveValue = null;
 
     private float m_Speed = 0.0f;
@@ -53,7 +52,11 @@ public class VRController : MonoBehaviour
         Quaternion orientation = Quaternion.Euler(orientationEuler);
         Vector3 movement = Vector3.zero;
 
-        if ( m_MoveValue.axis.y >= 0.75f || m_MoveValue.axis.y <= -0.75f)
+        
+        if (m_MoveValue.axis.y <= 0.75f ||  m_MoveValue.axis.y >= -0.75f)
+            m_Speed = 0;
+
+        if (m_MoveValue.axis.y >= 0.75f ||  m_MoveValue.axis.y <= -0.75f)
         {
             m_Speed += m_MoveValue.axis.y * m_Sensitivity;
             m_Speed = Mathf.Clamp(m_Speed, -m_MaxSpeed, m_MaxSpeed);
