@@ -27,6 +27,6 @@ public class HandAnimator : MonoBehaviour
 
     private void Grab(SteamVR_Action_Single action, SteamVR_Input_Sources source, float axis, float delta)
     {
-        m_Animator.SetFloat("PointBlend", axis);
+        m_Animator.SetFloat("FistBlend", axis);
     }
 }

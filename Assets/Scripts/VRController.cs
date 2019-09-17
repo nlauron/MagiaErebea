@@ -5,8 +5,13 @@ using Valve.VR;
 
 public class VRController : MonoBehaviour
 {
-    public float m_Sensitivity = 0.1f;
-    public float m_MaxSpeed = 1.0f;
+    public float m_Gravity = 30.0f;
+    public float m_Sensitivity = 10f;
+    public float m_MaxSpeed = 10.0f;
+    public float m_RotateIncrement = 90;
+
+    // Rotation Snap
+    public SteamVR_Action_Boolean m_RotatePress = null;
 
     public SteamVR_Action_Vector2 m_MoveValue = null;
 
@@ -29,12 +34,15 @@ public class VRController : MonoBehaviour
 
     private void Update()
     {
-        print(m_MoveValue.axis);
-        HandleHead();
-        CalculateMovement();
+        // Remove Rotation Snapping
+        //HandleHead();
         HandleHeight();
+        CalculateMovement();
+        SnapRotation();
     }
 
+    /*
+    // Remove for Rotation Snapping
     private void HandleHead()
     {
         Vector3 oldPosition = m_CameraRig.position;
@@ -45,27 +53,7 @@ public class VRController : MonoBehaviour
         m_CameraRig.position = oldPosition;
         m_CameraRig.rotation = oldRotation;
     }
-
-    private void CalculateMovement()
-    {
-        Vector3 orientationEuler = new Vector3(0, transform.eulerAngles.y, 0);
-        Quaternion orientation = Quaternion.Euler(orientationEuler);
-        Vector3 movement = Vector3.zero;
-
-        
-        if (m_MoveValue.axis.y <= 0.75f ||  m_MoveValue.axis.y >= -0.75f)
-            m_Speed = 0;
-
-        if (m_MoveValue.axis.y >= 0.75f ||  m_MoveValue.axis.y <= -0.75f)
-        {
-            m_Speed += m_MoveValue.axis.y * m_Sensitivity;
-            m_Speed = Mathf.Clamp(m_Speed, -m_MaxSpeed, m_MaxSpeed);
-
-            movement += orientation * (m_Speed * Vector3.forward) * Time.deltaTime;
-        }
-
-        m_CharacterController.Move(movement);
-    }
+    */
 
     private void HandleHeight()
     {
@@ -82,5 +70,42 @@ public class VRController : MonoBehaviour
         newCenter = Quaternion.Euler(0, -transform.eulerAngles.y, 0) * newCenter;
 
         m_CharacterController.center = newCenter;
+    }
+
+    private void CalculateMovement()
+    {
+        Vector3 orientationEuler = new Vector3(0, m_Head.eulerAngles.y, 0);
+        Quaternion orientation = Quaternion.Euler(orientationEuler);
+        Vector3 movement = Vector3.zero;
+
+        
+        if (m_MoveValue.axis.y <= 0.75f ||  m_MoveValue.axis.y >= -0.75f)
+            m_Speed = 0;
+
+        if (m_MoveValue.axis.y >= 0.75f ||  m_MoveValue.axis.y <= -0.75f)
+        {
+            m_Speed += m_MoveValue.axis.y * m_Sensitivity;
+            m_Speed = Mathf.Clamp(m_Speed, -m_MaxSpeed, m_MaxSpeed);
+
+            movement += orientation * (m_Speed * Vector3.forward);
+        }
+
+        // Gravity
+        movement.y -= m_Gravity * Time.deltaTime;
+
+        m_CharacterController.Move(movement * Time.deltaTime);
+    }
+
+    private void SnapRotation()
+    {
+        float snapValue = 0.0f;
+
+        if (m_RotatePress.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            snapValue = -Mathf.Abs(m_RotateIncrement);
+
+        if (m_RotatePress.GetStateDown(SteamVR_Input_Sources.RightHand))
+            snapValue = Mathf.Abs(m_RotateIncrement);
+
+        transform.RotateAround(m_Head.position, Vector3.up, snapValue);
     }
 }
