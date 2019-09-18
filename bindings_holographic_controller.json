@@ -172,13 +172,13 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/selectlefthand"
+                     "output" : "/actions/default/in/selectleft"
                   },
                   "position" : {
-                     "output" : "/actions/default/in/menuselectpostlefthand"
+                     "output" : "/actions/default/in/menuselectionposleft"
                   },
                   "touch" : {
-                     "output" : "/actions/default/in/activatemenulefthand"
+                     "output" : "/actions/default/in/activatemenuleft"
                   }
                },
                "mode" : "trackpad",
@@ -187,13 +187,13 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/selectrighthand"
+                     "output" : "/actions/default/in/selectright"
                   },
                   "position" : {
-                     "output" : "/actions/default/in/menuselectposrighthand"
+                     "output" : "/actions/default/in/menuselectionposright"
                   },
                   "touch" : {
-                     "output" : "/actions/default/in/activatemenurighthand"
+                     "output" : "/actions/default/in/activatemenuright"
                   }
                },
                "mode" : "trackpad",
