@@ -59,7 +59,7 @@ public class ColorChanger : MonoBehaviour
 
         handRight = GameObject.Find("RightHand");
         handLeft = GameObject.Find("LeftHand");
-        // handRight.GetComponent<Blaster>().ChangeElement(elementID);
-        // handLeft.GetComponent<Blaster>().ChangeElement(elementID);
+        handRight.GetComponent<Blaster>().ChangeElement(elementID);
+        handLeft.GetComponent<Blaster>().ChangeElement(elementID);
     }
 }

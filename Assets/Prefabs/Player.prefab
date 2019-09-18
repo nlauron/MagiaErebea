@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Gravity: 30
-  m_Sensitivity: 1
+  m_Sensitivity: 10
   m_MaxSpeed: 10
   m_RotateIncrement: 90
   m_RotatePress:
