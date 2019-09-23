@@ -5,6 +5,7 @@ using Valve.VR;
 
 public class VRController : MonoBehaviour
 {
+    public int m_Health = 4;
     public float m_Gravity = 30.0f;
     public float m_Sensitivity = 10f;
     public float m_MaxSpeed = 10.0f;
@@ -34,26 +35,10 @@ public class VRController : MonoBehaviour
 
     private void Update()
     {
-        // Remove Rotation Snapping
-        //HandleHead();
         HandleHeight();
         CalculateMovement();
         SnapRotation();
     }
-
-    /*
-    // Remove for Rotation Snapping
-    private void HandleHead()
-    {
-        Vector3 oldPosition = m_CameraRig.position;
-        Quaternion oldRotation = m_CameraRig.rotation;
-
-        transform.eulerAngles = new Vector3(0.0f, m_Head.rotation.eulerAngles.y, 0.0f);
-
-        m_CameraRig.position = oldPosition;
-        m_CameraRig.rotation = oldRotation;
-    }
-    */
 
     private void HandleHeight()
     {
