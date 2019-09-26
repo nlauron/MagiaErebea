@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorChanger : MonoBehaviour
+public class ElementChanger : MonoBehaviour
 {
     public Material fireMaterial;
     public Material waterMaterial;
@@ -10,7 +10,6 @@ public class ColorChanger : MonoBehaviour
     public Material earthMaterial;
     public Material lightningMaterial;
     public Material iceMaterial;
-    public GameObject projectile;
     private GameObject handRight;
     private GameObject handLeft;
 
@@ -54,12 +53,18 @@ public class ColorChanger : MonoBehaviour
 
     private void SetElement(Material newElement)
     {
-        MeshRenderer renderer = projectile.GetComponent<MeshRenderer>();
-        renderer.material = newElement;
-
         handRight = GameObject.Find("RightHand");
         handLeft = GameObject.Find("LeftHand");
+
         handRight.GetComponent<Blaster>().ChangeElement(elementID);
+        foreach (Projectile projectile in handRight.GetComponent<Blaster>().m_ProjectilePool.m_Projectiles)
+        {
+            projectile.GetComponent<MeshRenderer>().material = newElement;
+           
+        }
+
         handLeft.GetComponent<Blaster>().ChangeElement(elementID);
+        foreach (Projectile projectile in handLeft.GetComponent<Blaster>().m_ProjectilePool.m_Projectiles)
+            projectile.GetComponent<MeshRenderer>().material = newElement;
     }
 }
