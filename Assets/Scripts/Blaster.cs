@@ -19,13 +19,13 @@ public class Blaster : MonoBehaviour
     public Transform m_Barrel = null;
     public GameObject m_ProjectilePrefab = null;
     public Text m_AmmoOutput = null;
+    public ProjectilePool m_ProjectilePool = null;
 
     private bool m_IsReloading = false;
     private int m_FiredCount = 0;
 
     private SteamVR_Behaviour_Pose m_Pose = null;
     private Animator m_Animator = null;
-    private ProjectilePool m_ProjectilePool = null;
 
     private void Awake()
     {
