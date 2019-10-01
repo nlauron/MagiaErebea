@@ -7,6 +7,6 @@ public class ButtonHandler : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("SampleScene");
     }
 }
