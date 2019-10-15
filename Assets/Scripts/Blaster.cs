@@ -12,8 +12,9 @@ public class Blaster : MonoBehaviour
 
     // SETTINGS
     public int m_Force = 10;
-    public int m_MaxProjecileCount = 3;
+    public int m_MaxProjecileCount = 5;
     public float m_ReloadTime = 0.2f;
+    public string m_CurrentElement;
 
     // REFERENCES
     public Transform m_Barrel = null;
@@ -32,6 +33,8 @@ public class Blaster : MonoBehaviour
         m_Pose = GetComponentInParent<SteamVR_Behaviour_Pose>();
         m_Animator = GetComponent<Animator>();
 
+        m_CurrentElement = "Fire";
+        m_ProjectilePrefab.tag = m_CurrentElement;
         m_ProjectilePool = new ProjectilePool(m_ProjectilePrefab, m_MaxProjecileCount);
     }
 
@@ -42,6 +45,7 @@ public class Blaster : MonoBehaviour
 
     private void Update()
     {
+        m_ProjectilePrefab.tag = m_CurrentElement;
         if (m_IsReloading)
             return;
 
@@ -71,6 +75,8 @@ public class Blaster : MonoBehaviour
         m_AmmoOutput.text = "-";
         m_IsReloading = true;
 
+        yield return new WaitForSeconds(1.0f);
+
         m_ProjectilePool.SetAllProjectiles();
         m_ProjectilePool = new ProjectilePool(m_ProjectilePrefab, m_MaxProjecileCount);
 
@@ -78,6 +84,8 @@ public class Blaster : MonoBehaviour
 
         UpdateFiredCount(0);
         m_IsReloading = false;
+        m_ProjectilePrefab.tag = m_CurrentElement;
+
     }
 
     private void UpdateFiredCount(int newValue)
@@ -86,6 +94,7 @@ public class Blaster : MonoBehaviour
         m_AmmoOutput.text = (m_MaxProjecileCount - m_FiredCount).ToString();
     }
 
+    /*
     public void ChangeElement(int newElement)
     {
         switch (newElement)
@@ -116,5 +125,5 @@ public class Blaster : MonoBehaviour
                 break;
         }
     }
-
+    */
 }

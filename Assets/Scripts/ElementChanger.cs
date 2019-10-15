@@ -4,67 +4,73 @@ using UnityEngine;
 
 public class ElementChanger : MonoBehaviour
 {
-    public Material fireMaterial;
-    public Material waterMaterial;
-    public Material windMaterial;
-    public Material earthMaterial;
-    public Material lightningMaterial;
-    public Material iceMaterial;
     private GameObject handRight;
     private GameObject handLeft;
-
+    private string elementTag = null;
     private int elementID = 0;
 
     public void SetFire()
     {
-        SetElement(fireMaterial);
         elementID = 1;
+        elementTag = "Fire";
+        SetElement();
     }
 
     public void SetWater()
     {
-        SetElement(waterMaterial);
         elementID = 2;
+        elementTag = "Water";
+        SetElement();
     }
 
     public void SetWind()
     {
-        SetElement(windMaterial);
         elementID = 3;
+        elementTag = "Wind";
+        SetElement();
     }
 
     public void SetEarth()
     {
-        SetElement(earthMaterial);
         elementID = 4;
+        elementTag = "Earth";
+        SetElement();
     }
 
     public void SetLightning()
     {
-        SetElement(lightningMaterial);
         elementID = 5;
+        elementTag = "Lightning";
+        SetElement();
     }
 
     public void SetIce()
     {
-        SetElement(iceMaterial);
         elementID = 6;
+        elementTag = "Ice";
+        SetElement();
     }
 
-    private void SetElement(Material newElement)
+    private void SetElement()
     {
+        print("Setting Element");
+        print(elementTag);
+        print(elementID);
         handRight = GameObject.Find("RightHand");
         handLeft = GameObject.Find("LeftHand");
 
-        handRight.GetComponent<Blaster>().ChangeElement(elementID);
+        //handRight.GetComponent<Blaster>().ChangeElement(elementID);
         foreach (Projectile projectile in handRight.GetComponent<Blaster>().m_ProjectilePool.m_Projectiles)
         {
-            projectile.GetComponent<MeshRenderer>().material = newElement;
-           
+            projectile.tag = elementTag;
+            handRight.GetComponent<Blaster>().m_CurrentElement = elementTag;
         }
 
-        handLeft.GetComponent<Blaster>().ChangeElement(elementID);
+        //andLeft.GetComponent<Blaster>().ChangeElement(elementID);
         foreach (Projectile projectile in handLeft.GetComponent<Blaster>().m_ProjectilePool.m_Projectiles)
-            projectile.GetComponent<MeshRenderer>().material = newElement;
+        {
+            projectile.tag = elementTag;
+            handLeft.GetComponent<Blaster>().m_CurrentElement = elementTag;
+        }
     }
 }

@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 3113003465039516807}
   - component: {fileID: 3113003465039516805}
   - component: {fileID: 3113003465039516806}
+  - component: {fileID: 5941467341714677507}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -522,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef1355e46c193c428ba9d5aedc8d641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Health: 4
   m_Gravity: 30
   m_Sensitivity: 10
   m_MaxSpeed: 10
@@ -532,6 +534,22 @@ MonoBehaviour:
   m_MoveValue:
     actionPath: /actions/default/in/JoystickPosition
     needsReinit: 0
+--- !u!114 &5941467341714677507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3113003465039516800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73402a1762fbf0d42b1a181db7ad4bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Health: 0
+  m_Kills: 0
+  m_IFrame: 3
+  m_HUD: {fileID: 0}
 --- !u!1001 &3113003463384130407
 PrefabInstance:
   m_ObjectHideFlags: 0
