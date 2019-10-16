@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
     public IEnumerator Damage()
     {
-        if (m_Invincible)
+        if (!m_Invincible)
         {
             m_Health--;
             CheckHealth();
@@ -51,6 +51,6 @@ public class Player : MonoBehaviour
 
     private void GameOver()
     {
-        SceneManager.LoadScene("GameOver");
+        //SceneManager.LoadScene("GameOver");
     }
 }

@@ -17,12 +17,12 @@ public class EnemyManager : MonoBehaviour
     public GameObject m_EnemyPrefab;
     public Transform[] m_SpawnPoints;
     public float m_TimeBetweenEnemies = 2f;
+    public int m_CurrentWave;
 
     private int m_TotalEnemiesInCurrentWave;
     private int m_EnemiesInWaveLeft;
     private int m_SpawnedEnemies;
 
-    private int m_CurrentWave;
     private int m_Enemies;
     // private int m_TotalWaves;
 

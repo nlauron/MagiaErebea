@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     private int m_MaxHealth = 2;
     private int m_Health = 0;
     private int m_MoveSpeed = 4;
-    private int m_MinimumDistance = 2;
+    private int m_MinimumDistance = 3;
 
     private void Awake()
     {
