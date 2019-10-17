@@ -243,12 +243,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Lifetime: 10
-  m_Fire: {fileID: 0}
-  m_Water: {fileID: 0}
-  m_Wind: {fileID: 0}
-  m_Earth: {fileID: 0}
-  m_Lightning: {fileID: 0}
-  m_Ice: {fileID: 0}
+  m_Fire: {fileID: 2100000, guid: bd74b7e3a0cc9f148856cbaff1ff9bc7, type: 2}
+  m_Water: {fileID: 2100000, guid: 7bb95ada4b8605542800fad6f67d8b8d, type: 2}
+  m_Wind: {fileID: 2100000, guid: 28cde1355f8c7cf4a92230067733b5b7, type: 2}
+  m_Earth: {fileID: 2100000, guid: b049974914d0dce46aebe545f03e6f75, type: 2}
+  m_Lightning: {fileID: 2100000, guid: a301fda1311d02c4f98fb2b5e1251bcf, type: 2}
+  m_Ice: {fileID: 2100000, guid: 8eb540ca97b99a746b11d99a006b4822, type: 2}
 --- !u!54 &737516642
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public int m_Health;
     public int m_Kills;
-    public float m_IFrame = 2.0f;
+    public float m_IFrame = 1.0f;
     public Canvas m_HUD;
 
     private bool m_GameOver = false;
@@ -55,6 +55,6 @@ public class Player : MonoBehaviour
 
     private void GameOver()
     {
-        //SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("GameOver");
     }
 }

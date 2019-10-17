@@ -402,6 +402,7 @@ Transform:
   - {fileID: 1465935672}
   - {fileID: 372740624}
   - {fileID: 8509337783579505159}
+  - {fileID: 1019746232392229857}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -10, z: 0}
@@ -486,7 +487,8 @@ MonoBehaviour:
   m_Force: 10
   m_MaxProjecileCount: 3
   m_ReloadTime: 0.2
-  m_Barrel: {fileID: 1465935672}
+  m_CurrentElement: 
+  m_Barrel: {fileID: 1019746232392229857}
   m_ProjectilePrefab: {fileID: 1072582130217758048, guid: a7147876911f95147aec615a22d09f07,
     type: 3}
   m_AmmoOutput: {fileID: 8509337783544584793}
@@ -1033,6 +1035,36 @@ Transform:
   m_Father: {fileID: 372740624}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 22.129232, y: 65.772385, z: 150.20596}
+--- !u!1 &6019987003432259045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1019746232392229857}
+  m_Layer: 0
+  m_Name: Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1019746232392229857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6019987003432259045}
+  m_LocalRotation: {x: 0, y: 0.08715578, z: 0, w: 0.9961947}
+  m_LocalPosition: {x: 0.03, y: 0.05, z: 0.0035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 814775327}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 10, z: 0}
 --- !u!1001 &2634761657009322358
 PrefabInstance:
   m_ObjectHideFlags: 0
