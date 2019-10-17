@@ -14,35 +14,43 @@ public class HUDDisplay : MonoBehaviour
     public Sprite m_Empty;
  
     private Image[] hearts;
-    private bool[] damaged;
+    private int currentHealth;
+    private int damage;
 
     private void Awake()
     {
+        currentHealth = 3;
+        damage = -1;
         m_EnemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         hearts = new Image[m_Hearts.transform.childCount];
-        damaged = new bool[m_Hearts.transform.childCount];
         for (int i = 0; i < m_Hearts.transform.childCount; i++)
         {
             hearts[i] = m_Hearts.transform.GetChild(i).GetComponent<Image>();
-            hearts[i].sprite = m_Empty;
-            damaged[i] = false;
+            hearts[i].sprite = m_Full;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckDamage();
+        CheckHealth();
         UpdateKiilCount();
         UpdateWave();
     }
 
-    private void CheckDamage()
+    private void CheckHealth()
     {
-        for (int i = 0; i < m_Player.m_Health; i++)
+        if (m_Player.m_Health < currentHealth)
         {
-            hearts[i].sprite = m_Full;
+            currentHealth--;
+            damage++;
+            LoseHealth();
         }
+    }
+
+    private void LoseHealth()
+    {
+        hearts[damage].sprite = m_Empty;
     }
 
     private void UpdateKiilCount()
