@@ -53,20 +53,15 @@ public class ElementChanger : MonoBehaviour
 
     private void SetElement()
     {
-        print("Setting Element");
-        print(elementTag);
-        print(elementID);
         handRight = GameObject.Find("RightHand");
         handLeft = GameObject.Find("LeftHand");
 
-        //handRight.GetComponent<Blaster>().ChangeElement(elementID);
         foreach (Projectile projectile in handRight.GetComponent<Blaster>().m_ProjectilePool.m_Projectiles)
         {
             projectile.tag = elementTag;
             handRight.GetComponent<Blaster>().m_CurrentElement = elementTag;
         }
 
-        //andLeft.GetComponent<Blaster>().ChangeElement(elementID);
         foreach (Projectile projectile in handLeft.GetComponent<Blaster>().m_ProjectilePool.m_Projectiles)
         {
             projectile.tag = elementTag;

@@ -56,7 +56,6 @@ public class Blaster : MonoBehaviour
 
         if (m_FiredCount == m_MaxProjecileCount)
             StartCoroutine(Reload());
-
     }
 
     private void Fire()
@@ -93,37 +92,4 @@ public class Blaster : MonoBehaviour
         m_FiredCount = newValue;
         m_AmmoOutput.text = (m_MaxProjecileCount - m_FiredCount).ToString();
     }
-
-    /*
-    public void ChangeElement(int newElement)
-    {
-        switch (newElement)
-        {
-            case 1:
-                m_ProjectilePrefab.tag = "Fire";
-                StartCoroutine(Reload());
-                break;
-            case 2:
-                m_ProjectilePrefab.tag = "Water";
-                StartCoroutine(Reload());
-                break;
-            case 3:
-                m_ProjectilePrefab.tag = "Wind";
-                StartCoroutine(Reload());
-                break;
-            case 4:
-                m_ProjectilePrefab.tag = "Earth";
-                StartCoroutine(Reload());
-                break;
-            case 5:
-                m_ProjectilePrefab.tag = "Lightning";
-                StartCoroutine(Reload());
-                break;
-            case 6:
-                m_ProjectilePrefab.tag = "Ice";
-                StartCoroutine(Reload());
-                break;
-        }
-    }
-    */
 }

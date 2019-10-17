@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Color m_FlashDamageColor = Color.red;
+    public Color m_FlashDamageColor = Color.black;
 
     private GameObject m_Enemy;
     private Player m_Player;
@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     private int m_MaxHealth = 2;
     private int m_Health = 0;
     private int m_MoveSpeed = 4;
-    private int m_MinimumDistance = 2;
+    private int m_MinimumDistance = 3;
 
     private void Awake()
     {
@@ -26,8 +26,6 @@ public class Enemy : MonoBehaviour
         m_Spawner = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         m_Anim = GetComponent<Animator>();
         m_MeshRenderer = transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>();
-        // m_OriginalColor = transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.color;
-
     }
 
     private void Update()
@@ -35,28 +33,28 @@ public class Enemy : MonoBehaviour
         switch (m_ElementID)
         {
             case 1:
-                gameObject.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", Color.red);
-                m_OriginalColor = transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.color;
+                m_MeshRenderer.material.SetColor("_Color", Color.red);
+                m_OriginalColor = m_MeshRenderer.material.color;
                 break;
             case 2:
-                gameObject.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", Color.blue);
-                m_OriginalColor = transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.color;
+                m_MeshRenderer.material.SetColor("_Color", Color.blue);
+                m_OriginalColor = m_MeshRenderer.material.color;
                 break;
             case 3:
-                gameObject.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", Color.green);
-                m_OriginalColor = transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.color;
+                m_MeshRenderer.material.SetColor("_Color", Color.cyan);
+                m_OriginalColor = m_MeshRenderer.material.color;
                 break;
             case 4:
-                gameObject.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", Color.yellow);
-                m_OriginalColor = transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.color;
+                m_MeshRenderer.material.SetColor("_Color", Color.yellow);
+                m_OriginalColor = m_MeshRenderer.material.color;
                 break;
             case 5:
-                gameObject.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", Color.magenta);
-                m_OriginalColor = transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.color;
+                m_MeshRenderer.material.SetColor("_Color", Color.green);
+                m_OriginalColor = m_MeshRenderer.material.color;
                 break;
             case 6:
-                gameObject.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", Color.cyan);
-                m_OriginalColor = transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().material.color;
+                m_MeshRenderer.material.SetColor("_Color", Color.magenta);
+                m_OriginalColor = m_MeshRenderer.material.color;
                 break;
         }
 
@@ -118,10 +116,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Flash()
     {
-        print("flashing");
-        print(m_MeshRenderer.material.color);
-        m_MeshRenderer.material.color = m_FlashDamageColor;
-        print(m_MeshRenderer.material.color);
+        m_MeshRenderer.material.SetColor("_Color", m_FlashDamageColor);
 
         WaitForSeconds wait = new WaitForSeconds(2f);
         yield return wait;

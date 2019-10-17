@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public int m_Health;
     public int m_Kills;
-    public float m_IFrame = 3.0f;
+    public float m_IFrame = 1.0f;
     public Canvas m_HUD;
 
     private bool m_GameOver = false;
@@ -26,17 +26,21 @@ public class Player : MonoBehaviour
             GameOver();
     }
 
-    public IEnumerator Damage()
+    public void Damage()
     {
-        if (m_Invincible)
+        if (!m_Invincible)
         {
             m_Health--;
             CheckHealth();
-            m_Invincible = true;
+            StartCoroutine(Invulnerable());
         }
+    }
 
+    public IEnumerator Invulnerable()
+    {
+        m_Invincible = true;
         yield return new WaitForSeconds(m_IFrame);
-        m_Invincible = false;
+        m_Invincible = false;   
     }
 
     private bool CheckHealth()

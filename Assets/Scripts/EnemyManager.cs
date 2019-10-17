@@ -2,35 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-[System.Serializable]
-public class Wave
-{
-    public int EnemiesPerWave;
-    public GameObject EnemyPrefab;
-}
-*/
-
 public class EnemyManager : MonoBehaviour
 {
-    // public Wave[] m_Waves;
     public GameObject m_EnemyPrefab;
     public Transform[] m_SpawnPoints;
     public float m_TimeBetweenEnemies = 2f;
+    public int m_CurrentWave;
 
     private int m_TotalEnemiesInCurrentWave;
     private int m_EnemiesInWaveLeft;
     private int m_SpawnedEnemies;
 
-    private int m_CurrentWave;
     private int m_Enemies;
-    // private int m_TotalWaves;
 
     private void Start()
     {
         m_CurrentWave = -1;
-        m_Enemies = 4;
-        //m_TotalWaves = m_Waves.Length - 1;
+        m_Enemies = 2;
 
         StartNextWave();
     }
@@ -38,12 +26,9 @@ public class EnemyManager : MonoBehaviour
     private void StartNextWave()
     {
         m_CurrentWave++;
-
-        //if (m_CurrentWave > m_TotalWaves)
-        //  return;
-
-        // m_TotalEnemiesInCurrentWave = m_Waves[m_CurrentWave].EnemiesPerWave;
-        m_TotalEnemiesInCurrentWave = Mathf.RoundToInt(m_Enemies * 1.5f);
+        m_Enemies = Mathf.RoundToInt(m_Enemies * 1.5f);
+        
+        m_TotalEnemiesInCurrentWave = Mathf.RoundToInt(m_Enemies);
         m_EnemiesInWaveLeft = 0;
         m_SpawnedEnemies = 0;
 
