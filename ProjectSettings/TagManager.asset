@@ -11,6 +11,8 @@ TagManager:
   - Earth
   - Wind
   - Lightning
+  - Terrain
+  - Ocean
   layers:
   - Default
   - TransparentFX

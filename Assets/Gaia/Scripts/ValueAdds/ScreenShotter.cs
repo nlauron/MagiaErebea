@@ -120,12 +120,12 @@ namespace Gaia
 
             if (theCamera == null)
             {
-                theCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+                theCamera = GameObject.Find("Camera").GetComponent<Camera>();
             }
 
             if (theCamera == null)
             {
-                theCamera = GameObject.Find("Camera").GetComponent<Camera>();
+                theCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             }
 
             if (theCamera == null)

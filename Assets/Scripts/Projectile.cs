@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float m_Lifetime = 5.0f;
+    //public bool m_shot;
     public Material m_Fire;
     public Material m_Water;
     public Material m_Wind;
@@ -17,6 +18,7 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        //m_shot = false;
         SetInnactive();
     }
 

@@ -5,7 +5,7 @@ using Valve.VR;
 
 public class VRController : MonoBehaviour
 {
-    public float m_Gravity = 30.0f;
+    public float m_Gravity = 100.0f;
     public float m_Sensitivity = 10f;
     public float m_MaxSpeed = 10.0f;
     public float m_RotateIncrement = 90;
