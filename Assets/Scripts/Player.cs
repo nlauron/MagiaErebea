@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public int m_Kills;
     public float m_IFrame = 1.0f;
     public Canvas m_HUD;
+    public AudioSource m_PlayerSounds;
+    public AudioClip m_HurtSFX;
 
     private bool m_GameOver = false;
     private bool m_Invincible = false;
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
     {
         if (!m_Invincible)
         {
+            m_PlayerSounds.clip = m_HurtSFX;
+            m_PlayerSounds.Play();
             m_Health--;
             CheckHealth();
             StartCoroutine(Invulnerable());

@@ -5,7 +5,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float m_Lifetime = 5.0f;
-    //public bool m_shot;
+
+    public AudioSource m_AudioSource;
+    public AudioClip m_SpellSFX;
+
     public Material m_Fire;
     public Material m_Water;
     public Material m_Wind;
@@ -18,7 +21,6 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        //m_shot = false;
         SetInnactive();
     }
 
@@ -70,6 +72,9 @@ public class Projectile : MonoBehaviour
 
         // Activate
         gameObject.SetActive(true);
+
+        m_AudioSource.clip = m_SpellSFX;
+        m_AudioSource.Play();
 
         // Fire and Track
         m_Rigidbody.AddRelativeForce(Vector3.forward * blaster.m_Force, ForceMode.Impulse);
