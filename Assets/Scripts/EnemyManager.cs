@@ -9,6 +9,9 @@ public class EnemyManager : MonoBehaviour
     public float m_TimeBetweenEnemies = 2f;
     public int m_CurrentWave;
 
+    public AudioSource m_GameSounds;
+    public AudioClip m_WaveComplete;
+
     private int m_TotalEnemiesInCurrentWave;
     private int m_EnemiesInWaveLeft;
     private int m_SpawnedEnemies;
@@ -25,6 +28,9 @@ public class EnemyManager : MonoBehaviour
 
     private void StartNextWave()
     {
+        m_GameSounds.clip = m_WaveComplete;
+        m_GameSounds.Play();
+
         m_CurrentWave++;
         m_Enemies = Mathf.RoundToInt(m_Enemies * 1.5f);
         

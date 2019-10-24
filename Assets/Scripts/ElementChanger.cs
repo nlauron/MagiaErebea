@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ElementChanger : MonoBehaviour
 {
-    private GameObject handRight;
-    private GameObject handLeft;
+    private Blaster handRight;
+    private Blaster handLeft;
     private string elementTag = null;
     private int elementID = 0;
 
@@ -53,19 +53,21 @@ public class ElementChanger : MonoBehaviour
 
     private void SetElement()
     {
-        handRight = GameObject.Find("RightHand");
-        handLeft = GameObject.Find("LeftHand");
+        handRight = GameObject.Find("RightHand").GetComponent<Blaster>();
+        handLeft = GameObject.Find("LeftHand").GetComponent<Blaster>();
 
-        foreach (Projectile projectile in handRight.GetComponent<Blaster>().m_ProjectilePool.m_Projectiles)
+        foreach (Projectile projectile in handRight.m_ProjectilePool.m_Projectiles)
         {
             projectile.tag = elementTag;
-            handRight.GetComponent<Blaster>().m_CurrentElement = elementTag;
+            handRight.m_CurrentElement = elementTag;
+            handRight.ElementSFX(elementID);
         }
 
-        foreach (Projectile projectile in handLeft.GetComponent<Blaster>().m_ProjectilePool.m_Projectiles)
+        foreach (Projectile projectile in handLeft.m_ProjectilePool.m_Projectiles)
         {
             projectile.tag = elementTag;
-            handLeft.GetComponent<Blaster>().m_CurrentElement = elementTag;
+            handLeft.m_CurrentElement = elementTag;
+            handRight.ElementSFX(elementID);
         }
     }
 }

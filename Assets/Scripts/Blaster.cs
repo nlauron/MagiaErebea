@@ -22,6 +22,14 @@ public class Blaster : MonoBehaviour
     public Text m_AmmoOutput = null;
     public ProjectilePool m_ProjectilePool = null;
 
+    public AudioSource m_SpellSounds;
+    public AudioClip m_FireSpell;
+    public AudioClip m_WaterSpell;
+    public AudioClip m_WindSpell;
+    public AudioClip m_EarthSpell;
+    public AudioClip m_LightningSpell;
+    public AudioClip m_IceSpell;
+
     private bool m_IsReloading = false;
     private int m_FiredCount = 0;
 
@@ -91,5 +99,36 @@ public class Blaster : MonoBehaviour
     {
         m_FiredCount = newValue;
         m_AmmoOutput.text = (m_MaxProjecileCount - m_FiredCount).ToString();
+    }
+
+    public void ElementSFX(int elementID)
+    {
+        switch (elementID)
+        {
+            case 1:
+                m_SpellSounds.clip = m_FireSpell;
+                m_SpellSounds.Play();
+                break;
+            case 2:
+                m_SpellSounds.clip = m_WaterSpell;
+                m_SpellSounds.Play();
+                break;
+            case 3:
+                m_SpellSounds.clip = m_WindSpell;
+                m_SpellSounds.Play();
+                break;
+            case 4:
+                m_SpellSounds.clip = m_EarthSpell;
+                m_SpellSounds.Play();
+                break;
+            case 5:
+                m_SpellSounds.clip = m_LightningSpell;
+                m_SpellSounds.Play();
+                break;
+            case 6:
+                m_SpellSounds.clip = m_IceSpell;
+                m_SpellSounds.Play();
+                break;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Valve.VR;
 
 public class Player : MonoBehaviour
 {
@@ -9,9 +10,13 @@ public class Player : MonoBehaviour
     public int m_Kills;
     public float m_IFrame = 1.0f;
     public Canvas m_HUD;
+    public AudioSource m_PlayerSounds;
+    public AudioClip m_HurtSFX;
+    public AudioClip m_Death;
+    public float m_FadeTime = 9.0f;
 
-    private bool m_GameOver = false;
-    private bool m_Invincible = false;
+    private bool dead = false;
+    private bool invincible = false;
 
     private void Awake()
     {
@@ -19,17 +24,12 @@ public class Player : MonoBehaviour
         m_Kills = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (m_GameOver)
-            GameOver();
-    }
-
     public void Damage()
     {
-        if (!m_Invincible)
+        if (!invincible && !dead)
         {
+            m_PlayerSounds.clip = m_HurtSFX;
+            m_PlayerSounds.Play();
             m_Health--;
             CheckHealth();
             StartCoroutine(Invulnerable());
@@ -38,23 +38,25 @@ public class Player : MonoBehaviour
 
     public IEnumerator Invulnerable()
     {
-        m_Invincible = true;
+        invincible = true;
         yield return new WaitForSeconds(m_IFrame);
-        m_Invincible = false;   
+        invincible = false;   
     }
 
-    private bool CheckHealth()
+    private void CheckHealth()
     {
         if (m_Health <= 0)
-            m_GameOver = true;
-        else
-            return m_GameOver;
-
-        return m_GameOver;
+            StartCoroutine(GameOver());
     }
 
-    private void GameOver()
+    private IEnumerator GameOver()
     {
+        dead = true;
+        m_PlayerSounds.clip = m_Death;
+        m_PlayerSounds.Play();
+        SteamVR_Fade.Start(Color.black, m_FadeTime, true);
+
+        yield return new WaitForSeconds(m_FadeTime);
         SceneManager.LoadScene("GameOver");
     }
 }

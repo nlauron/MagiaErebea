@@ -50,7 +50,8 @@ public class HUDDisplay : MonoBehaviour
 
     private void LoseHealth()
     {
-        hearts[damage].sprite = m_Empty;
+        if (m_Player.m_Health >= 0)
+            hearts[damage].sprite = m_Empty;
     }
 
     private void UpdateKiilCount()

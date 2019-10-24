@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GaiaSettings
   m_EditorClassIdentifier: 
   m_currentController: 1
-  m_currentSize: 3
+  m_currentSize: 1
   m_currentEnvironment: 1
   m_currentRenderer: 0
   m_currentDefaults: {fileID: 11400000, guid: 523e7c864412c3144932b865df8adefa, type: 2}

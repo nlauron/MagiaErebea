@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Color m_FlashDamageColor = Color.black;
+    public Color m_FlashDamageColor = Color.white;
 
     private GameObject m_Enemy;
     private Player m_Player;
