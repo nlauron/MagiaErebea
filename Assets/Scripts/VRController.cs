@@ -62,20 +62,11 @@ public class VRController : MonoBehaviour
         Quaternion orientation = Quaternion.Euler(orientationEuler);
         Vector3 movement = Vector3.zero;
 
-        
-        if (m_MoveValue.axis.y <= 0.75f ||  m_MoveValue.axis.y >= -0.75f)
-            m_Speed = 0;
-
-        if (m_MoveValue.axis.y >= 0.75f ||  m_MoveValue.axis.y <= -0.75f)
-        {
-            m_Speed += m_MoveValue.axis.y * m_Sensitivity;
-            m_Speed = Mathf.Clamp(m_Speed, -m_MaxSpeed, m_MaxSpeed);
-
-            movement += orientation * (m_Speed * Vector3.forward);
-        }
+        movement += orientation * new Vector3(m_MoveValue.axis.x, 0.0f, m_MoveValue.axis.y) * m_MaxSpeed;
+        Debug.Log("x=" + m_MoveValue.axis.x + ", " + "y=" + m_MoveValue.axis.y);
 
         // Gravity
-        movement.y -= m_Gravity * Time.deltaTime;
+        movement.y -= m_Gravity;
 
         m_CharacterController.Move(movement * Time.deltaTime);
     }

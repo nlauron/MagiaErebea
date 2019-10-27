@@ -6,6 +6,15 @@ using Valve.VR;
 
 public class Blaster : MonoBehaviour
 {
+    [System.Serializable]
+    public struct ElementProjectilePair
+    {
+        public string element;
+        public GameObject projectile;
+    }
+
+    public ElementProjectilePair[] elements;
+
     // INPUT
     public SteamVR_Action_Boolean m_FireAction = null;
     // public SteamVR_Action_Boolean m_ReloadAction = null;
@@ -43,7 +52,7 @@ public class Blaster : MonoBehaviour
 
         m_CurrentElement = "Fire";
         m_ProjectilePrefab.tag = m_CurrentElement;
-        m_ProjectilePool = new ProjectilePool(m_ProjectilePrefab, m_MaxProjecileCount);
+        //m_ProjectilePool = new ProjectilePool(m_ProjectilePrefab, m_MaxProjecileCount);
     }
 
     private void Start()
@@ -62,16 +71,29 @@ public class Blaster : MonoBehaviour
             Fire();
         }
 
+        /**
         if (m_FiredCount == m_MaxProjecileCount)
             StartCoroutine(Reload());
+        */
     }
 
     private void Fire()
     {
+        /*
         if (m_FiredCount >= m_MaxProjecileCount)
             return;
+        */
+        GameObject projectileObject = null;
 
-        Projectile targetProjectile = m_ProjectilePool.m_Projectiles[m_FiredCount];
+        foreach (var element in elements)
+        {
+            if (element.element == m_CurrentElement)
+            {
+                projectileObject = Instantiate(element.projectile);
+            }
+        }
+
+        Projectile targetProjectile = projectileObject.GetComponent<Projectile>();
         targetProjectile.Launch(this);
 
         UpdateFiredCount(m_FiredCount + 1);

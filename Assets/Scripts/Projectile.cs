@@ -24,6 +24,7 @@ public class Projectile : MonoBehaviour
         SetInnactive();
     }
 
+    /**
     private void Update()
     {
         switch (gameObject.tag)
@@ -57,11 +58,13 @@ public class Projectile : MonoBehaviour
         }
 
     }
+    */
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player")
-            SetInnactive();
+            Destroy(gameObject);
+                //SetInnactive();
     }
 
     public void Launch(Blaster blaster)

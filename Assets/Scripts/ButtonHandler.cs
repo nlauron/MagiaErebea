@@ -22,7 +22,7 @@ public class ButtonHandler : MonoBehaviour
     {
         SteamVR_Fade.Start(Color.black, 1.0f, true);
         yield return new WaitForSeconds(m_FadeTime);
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     private IEnumerator FadeToMenu()
