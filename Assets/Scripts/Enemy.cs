@@ -5,6 +5,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Color m_FlashDamageColor = Color.white;
+    public int m_ElementID = 0;
+    public AudioSource m_AudioSource;
+    public AudioClip m_Hit;
+    public AudioClip m_Miss;
+    public AudioClip m_Dying;
 
     private GameObject m_Enemy;
     private Player m_Player;
@@ -12,16 +17,16 @@ public class Enemy : MonoBehaviour
     private Animator m_Anim = null;
     private SkinnedMeshRenderer m_MeshRenderer = null;
     private Color m_OriginalColor = Color.white;
-    public int m_ElementID = 0;
 
     private int m_MaxHealth = 2;
     private int m_Health = 0;
     private int m_MoveSpeed = 4;
     private int m_MinimumDistance = 3;
+    private float m_DeathTime = 2.3f;
+    private bool m_Spawned = false;
 
     private void Awake()
     {
-
         m_Player = GameObject.Find("Player").GetComponent<Player>();
         m_Spawner = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         m_Anim = GetComponent<Animator>();
@@ -30,32 +35,9 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        switch (m_ElementID)
+        if (!m_Spawned)
         {
-            case 1:
-                m_MeshRenderer.material.SetColor("_Color", Color.red);
-                m_OriginalColor = m_MeshRenderer.material.color;
-                break;
-            case 2:
-                m_MeshRenderer.material.SetColor("_Color", Color.blue);
-                m_OriginalColor = m_MeshRenderer.material.color;
-                break;
-            case 3:
-                m_MeshRenderer.material.SetColor("_Color", Color.cyan);
-                m_OriginalColor = m_MeshRenderer.material.color;
-                break;
-            case 4:
-                m_MeshRenderer.material.SetColor("_Color", Color.yellow);
-                m_OriginalColor = m_MeshRenderer.material.color;
-                break;
-            case 5:
-                m_MeshRenderer.material.SetColor("_Color", Color.green);
-                m_OriginalColor = m_MeshRenderer.material.color;
-                break;
-            case 6:
-                m_MeshRenderer.material.SetColor("_Color", Color.magenta);
-                m_OriginalColor = m_MeshRenderer.material.color;
-                break;
+            CheckElement();
         }
 
         transform.LookAt(m_Player.transform);
@@ -85,29 +67,69 @@ public class Enemy : MonoBehaviour
         ResetHealth();
     }
 
+    private void CheckElement()
+    {
+        switch (m_ElementID)
+        {
+            case 1:
+                m_MeshRenderer.material.SetColor("_Color", Color.red);
+                m_OriginalColor = m_MeshRenderer.material.color;
+                break;
+            case 2:
+                m_MeshRenderer.material.SetColor("_Color", Color.blue);
+                m_OriginalColor = m_MeshRenderer.material.color;
+                break;
+            case 3:
+                m_MeshRenderer.material.SetColor("_Color", Color.cyan);
+                m_OriginalColor = m_MeshRenderer.material.color;
+                break;
+            case 4:
+                m_MeshRenderer.material.SetColor("_Color", Color.yellow);
+                m_OriginalColor = m_MeshRenderer.material.color;
+                break;
+            case 5:
+                m_MeshRenderer.material.SetColor("_Color", Color.green);
+                m_OriginalColor = m_MeshRenderer.material.color;
+                break;
+            case 6:
+                m_MeshRenderer.material.SetColor("_Color", Color.magenta);
+                m_OriginalColor = m_MeshRenderer.material.color;
+                break;
+        }
+
+        m_Spawned = true;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Fire") && m_ElementID == 3)
             Damage();
 
-        if (collision.gameObject.CompareTag("Water") && m_ElementID == 4)
+        else if (collision.gameObject.CompareTag("Water") && m_ElementID == 4)
             Damage();
 
-        if (collision.gameObject.CompareTag("Ice") && m_ElementID == 5)
+        else if (collision.gameObject.CompareTag("Ice") && m_ElementID == 5)
             Damage();
 
-        if (collision.gameObject.CompareTag("Earth") && m_ElementID == 6)
+        else if (collision.gameObject.CompareTag("Earth") && m_ElementID == 6)
             Damage();
 
-        if (collision.gameObject.CompareTag("Wind") && m_ElementID == 1)
+        else if (collision.gameObject.CompareTag("Wind") && m_ElementID == 1)
             Damage();
 
-        if (collision.gameObject.CompareTag("Lightning") && m_ElementID == 2)
+        else if (collision.gameObject.CompareTag("Lightning") && m_ElementID == 2)
             Damage();
+
+        else
+        {
+            m_AudioSource.clip = m_Miss;
+            m_AudioSource.Play();
+        }
     }
 
     private void Damage()
     {
+        m_AudioSource.clip = m_Hit;
         StopAllCoroutines();
         StartCoroutine(Flash());
 
@@ -116,6 +138,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Flash()
     {
+        m_AudioSource.Play();
         m_MeshRenderer.material.SetColor("_Color", m_FlashDamageColor);
 
         WaitForSeconds wait = new WaitForSeconds(2f);
@@ -143,8 +166,17 @@ public class Enemy : MonoBehaviour
 
     private void Kill()
     {
+        m_AudioSource.clip = m_Dying;
         m_Player.m_Kills++;
-        Destroy(gameObject);
+        StartCoroutine(Death());
         m_Spawner.EnemyDefeated();
+    }
+
+    private IEnumerator Death()
+    {
+        m_AudioSource.Play();
+        m_Anim.SetTrigger("Death Condition");
+        yield return new WaitForSeconds(m_DeathTime);
+        Destroy(gameObject);
     }
 }

@@ -15,8 +15,6 @@ public class VRController : MonoBehaviour
 
     public SteamVR_Action_Vector2 m_MoveValue = null;
 
-    private float m_Speed = 0.0f;
-
     private CharacterController m_CharacterController = null;
     private Transform m_CameraRig = null;
     private Transform m_Head = null;
