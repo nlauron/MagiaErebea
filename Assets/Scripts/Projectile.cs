@@ -9,13 +9,6 @@ public class Projectile : MonoBehaviour
     public AudioSource m_AudioSource;
     public AudioClip m_SpellSFX;
 
-    public Material m_Fire;
-    public Material m_Water;
-    public Material m_Wind;
-    public Material m_Earth;
-    public Material m_Lightning;
-    public Material m_Ice;
-
     private Rigidbody m_Rigidbody = null;
 
     private void Awake()
@@ -24,44 +17,11 @@ public class Projectile : MonoBehaviour
         SetInnactive();
     }
 
-    private void Update()
-    {
-        switch (gameObject.tag)
-        {
-            case "Fire":
-                gameObject.GetComponent<MeshRenderer>().material = m_Fire;
-                break;
-
-            case "Water":
-                gameObject.GetComponent<MeshRenderer>().material = m_Water;
-                break;
-
-            case "Wind":
-                gameObject.GetComponent<MeshRenderer>().material = m_Wind;
-                break;
-
-            case "Earth":
-                gameObject.GetComponent<MeshRenderer>().material = m_Earth;
-                break;
-
-            case "Lightning":
-                gameObject.GetComponent<MeshRenderer>().material = m_Lightning;
-                break;
-
-            case "Ice":
-                gameObject.GetComponent<MeshRenderer>().material = m_Ice;
-                break;
-
-            default:
-                break;
-        }
-
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player")
-            SetInnactive();
+            Destroy(gameObject);
+                //SetInnactive();
     }
 
     public void Launch(Blaster blaster)

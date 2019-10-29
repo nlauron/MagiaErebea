@@ -56,18 +56,11 @@ public class ElementChanger : MonoBehaviour
         handRight = GameObject.Find("RightHand").GetComponent<Blaster>();
         handLeft = GameObject.Find("LeftHand").GetComponent<Blaster>();
 
-        foreach (Projectile projectile in handRight.m_ProjectilePool.m_Projectiles)
-        {
-            projectile.tag = elementTag;
-            handRight.m_CurrentElement = elementTag;
-            handRight.ElementSFX(elementID);
-        }
-
-        foreach (Projectile projectile in handLeft.m_ProjectilePool.m_Projectiles)
-        {
-            projectile.tag = elementTag;
-            handLeft.m_CurrentElement = elementTag;
-            handRight.ElementSFX(elementID);
-        }
+        handRight.m_CurrentElement = elementTag;
+        handRight.ElementSFX(elementID);
+        
+        handLeft.m_CurrentElement = elementTag;
+        handRight.ElementSFX(elementID);
+        
     }
 }

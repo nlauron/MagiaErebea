@@ -6,9 +6,17 @@ using Valve.VR;
 
 public class Blaster : MonoBehaviour
 {
+    [System.Serializable]
+    public struct ElementProjectilePair
+    {
+        public string element;
+        public GameObject projectile;
+    }
+
+    public ElementProjectilePair[] elements;
+
     // INPUT
     public SteamVR_Action_Boolean m_FireAction = null;
-    // public SteamVR_Action_Boolean m_ReloadAction = null;
 
     // SETTINGS
     public int m_Force = 100;
@@ -20,7 +28,6 @@ public class Blaster : MonoBehaviour
     public Transform m_Barrel = null;
     public GameObject m_ProjectilePrefab = null;
     public Text m_AmmoOutput = null;
-    public ProjectilePool m_ProjectilePool = null;
 
     public AudioSource m_SpellSounds;
     public AudioClip m_FireSpell;
@@ -43,7 +50,6 @@ public class Blaster : MonoBehaviour
 
         m_CurrentElement = "Fire";
         m_ProjectilePrefab.tag = m_CurrentElement;
-        m_ProjectilePool = new ProjectilePool(m_ProjectilePrefab, m_MaxProjecileCount);
     }
 
     private void Start()
@@ -61,38 +67,24 @@ public class Blaster : MonoBehaviour
         {
             Fire();
         }
-
-        if (m_FiredCount == m_MaxProjecileCount)
-            StartCoroutine(Reload());
     }
 
     private void Fire()
     {
-        if (m_FiredCount >= m_MaxProjecileCount)
-            return;
+        GameObject projectileObject = null;
 
-        Projectile targetProjectile = m_ProjectilePool.m_Projectiles[m_FiredCount];
+        foreach (var element in elements)
+        {
+            if (element.element == m_CurrentElement)
+            {
+                projectileObject = Instantiate(element.projectile);
+            }
+        }
+
+        Projectile targetProjectile = projectileObject.GetComponent<Projectile>();
         targetProjectile.Launch(this);
 
         UpdateFiredCount(m_FiredCount + 1);
-    }
-
-    private IEnumerator Reload()
-    {
-        m_AmmoOutput.text = "-";
-        m_IsReloading = true;
-
-        yield return new WaitForSeconds(1.0f);
-
-        m_ProjectilePool.SetAllProjectiles();
-        m_ProjectilePool = new ProjectilePool(m_ProjectilePrefab, m_MaxProjecileCount);
-
-        yield return new WaitForSeconds(m_ReloadTime);
-
-        UpdateFiredCount(0);
-        m_IsReloading = false;
-        m_ProjectilePrefab.tag = m_CurrentElement;
-
     }
 
     private void UpdateFiredCount(int newValue)
