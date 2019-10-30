@@ -481,6 +481,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd74a30151d73944ebdfb79959481e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  elements:
+  - element: Fire
+    projectile: {fileID: 8331944628893431345, guid: 87f7b76828f6b084a8ae63c53f825ebb,
+      type: 3}
+  - element: Water
+    projectile: {fileID: 6727811789261141820, guid: 37d5d9990f7e1e94bbe99e1d5168c10a,
+      type: 3}
+  - element: Wind
+    projectile: {fileID: 5600025675354688620, guid: badf4baf33fe0c34f8ec9f7d9f579bd4,
+      type: 3}
+  - element: Earth
+    projectile: {fileID: 4142486939008669671, guid: 9850207a4db9c754f89d743c47618f0e,
+      type: 3}
+  - element: Lightning
+    projectile: {fileID: 3895048728270095904, guid: d881b217ca2070c448e868401061ecda,
+      type: 3}
+  - element: Ice
+    projectile: {fileID: 8272799541479744758, guid: 6c9a9ce4ac90be649ad9aae63c8cb3be,
+      type: 3}
   m_FireAction:
     actionPath: /actions/default/in/Shoot
     needsReinit: 0
@@ -492,6 +511,13 @@ MonoBehaviour:
   m_ProjectilePrefab: {fileID: 1072582130217758048, guid: a7147876911f95147aec615a22d09f07,
     type: 3}
   m_AmmoOutput: {fileID: 8509337783544584793}
+  m_SpellSounds: {fileID: 0}
+  m_FireSpell: {fileID: 0}
+  m_WaterSpell: {fileID: 0}
+  m_WindSpell: {fileID: 0}
+  m_EarthSpell: {fileID: 0}
+  m_LightningSpell: {fileID: 0}
+  m_IceSpell: {fileID: 0}
 --- !u!1 &1086546096
 GameObject:
   m_ObjectHideFlags: 0
