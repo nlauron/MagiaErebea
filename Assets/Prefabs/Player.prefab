@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Gravity: 100
   m_Sensitivity: 10
   m_MaxSpeed: 10
-  m_RotateIncrement: 90
+  m_RotateIncrement: 30
   m_RotatePress:
     actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
@@ -1490,6 +1490,11 @@ PrefabInstance:
       propertyPath: m_IceSpell
       value: 
       objectReference: {fileID: 8300000, guid: 4581129b137367d40945c1a4106072a0, type: 3}
+    - target: {fileID: 6146026344070294627, guid: 71336e835d97d9145ba924d73d52240b,
+        type: 3}
+      propertyPath: m_Force
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71336e835d97d9145ba924d73d52240b, type: 3}
 --- !u!1 &3113003464364750883 stripped
@@ -1599,6 +1604,11 @@ PrefabInstance:
       propertyPath: m_IceSpell
       value: 
       objectReference: {fileID: 8300000, guid: 4581129b137367d40945c1a4106072a0, type: 3}
+    - target: {fileID: 8157834745326971885, guid: 4e794dfcb85fc3742a3981a5d60bea3a,
+        type: 3}
+      propertyPath: m_Force
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e794dfcb85fc3742a3981a5d60bea3a, type: 3}
 --- !u!1 &3113003463307130589 stripped

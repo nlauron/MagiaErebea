@@ -3561,6 +3561,9 @@ GameObject:
   - component: {fileID: 7135138171350414703}
   - component: {fileID: 7365318347291153055}
   - component: {fileID: 1584945163967335369}
+  - component: {fileID: 2301307028981297495}
+  - component: {fileID: 5055454234750948445}
+  - component: {fileID: 5228335539444030672}
   m_Layer: 0
   m_Name: GroundUnit
   m_TagString: Untagged
@@ -3616,11 +3619,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde2d5a80936bce44aebf7384943ddae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FlashDamageColor: {r: 1, g: 0, b: 0, a: 1}
+  m_FlashDamageColor: {r: 1, g: 1, b: 1, a: 1}
   m_ElementID: 0
   m_AudioSource: {fileID: 1584945163967335369}
   m_Hit: {fileID: 8300000, guid: 0f47289fef3372a41b4ed87f829f5c8e, type: 3}
-  m_Miss: {fileID: 8300000, guid: 1eaafa9c42657bd4aa10100b8308a1eb, type: 3}
+  m_Miss: {fileID: 8300000, guid: 714654b6385e3234e9dbaaf85bc51d2a, type: 3}
   m_Dying: {fileID: 8300000, guid: 72fab88540d53134498b80ae9edbcc49, type: 3}
 --- !u!143 &7365318347291153055
 CharacterController:
@@ -3736,6 +3739,84 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2301307028981297495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5109715872266546187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  target: {fileID: 0}
+--- !u!114 &5055454234750948445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5109715872266546187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &5228335539444030672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5109715872266546187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  radius: 0.5
+  height: 2
+  repathRate: 0.5
+  canSearch: 1
+  canMove: 1
+  maxSpeed: 1
+  gravity: {x: NaN, y: NaN, z: NaN}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
+  orientation: 0
+  enableRotation: 1
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 0.6
+  pickNextWaypointDist: 2
+  endReachedDistance: 0.2
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 0
 --- !u!1 &5109715872266546521
 GameObject:
   m_ObjectHideFlags: 0
