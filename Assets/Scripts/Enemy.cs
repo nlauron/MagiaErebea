@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     private int m_MinimumDistance = 3;
     private float m_DeathTime = 2.3f;
     private bool m_Spawned = false;
+    private bool m_Dead = false;
 
     private void Awake()
     {
@@ -40,7 +41,7 @@ public class Enemy : MonoBehaviour
             CheckElement();
         }
 
-        transform.LookAt(m_Player.transform);
+        //transform.LookAt(m_Player.transform);
 
         if (Vector3.Distance(transform.position, m_Player.transform.position) >= m_MinimumDistance)
         {
@@ -56,7 +57,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (m_Anim.GetInteger("Attack Condition") == 1)
+        if (m_Anim.GetInteger("Attack Condition") == 1 && !m_Dead)
         {
             m_Player.Damage();
         }
@@ -102,28 +103,31 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Fire") && m_ElementID == 3)
-            Damage();
-
-        else if (collision.gameObject.CompareTag("Water") && m_ElementID == 4)
-            Damage();
-
-        else if (collision.gameObject.CompareTag("Ice") && m_ElementID == 5)
-            Damage();
-
-        else if (collision.gameObject.CompareTag("Earth") && m_ElementID == 6)
-            Damage();
-
-        else if (collision.gameObject.CompareTag("Wind") && m_ElementID == 1)
-            Damage();
-
-        else if (collision.gameObject.CompareTag("Lightning") && m_ElementID == 2)
-            Damage();
-
-        else
+        if (!m_Dead)
         {
-            m_AudioSource.clip = m_Miss;
-            m_AudioSource.Play();
+            if (collision.gameObject.CompareTag("Fire") && m_ElementID == 3)
+                Damage();
+
+            else if (collision.gameObject.CompareTag("Water") && m_ElementID == 4)
+                Damage();
+
+            else if (collision.gameObject.CompareTag("Ice") && m_ElementID == 5)
+                Damage();
+
+            else if (collision.gameObject.CompareTag("Earth") && m_ElementID == 6)
+                Damage();
+
+            else if (collision.gameObject.CompareTag("Wind") && m_ElementID == 1)
+                Damage();
+
+            else if (collision.gameObject.CompareTag("Lightning") && m_ElementID == 2)
+                Damage();
+
+            else
+            {
+                m_AudioSource.clip = m_Miss;
+                m_AudioSource.Play();
+            }
         }
     }
 
@@ -141,7 +145,7 @@ public class Enemy : MonoBehaviour
         m_AudioSource.Play();
         m_MeshRenderer.material.SetColor("_Color", m_FlashDamageColor);
 
-        WaitForSeconds wait = new WaitForSeconds(2f);
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
         yield return wait;
 
         m_MeshRenderer.material.color = m_OriginalColor;
@@ -160,8 +164,11 @@ public class Enemy : MonoBehaviour
 
     private void CheckForDeath()
     {
-        if (m_Health <= 0)
+        if (m_Health <= 0 && !m_Dead)
+        {
+            m_Dead = true;
             Kill();
+        }
     }
 
     private void Kill()
@@ -174,7 +181,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Death()
     {
-        m_AudioSource.Play();
+        m_AudioSource.Play(); 
         m_Anim.SetTrigger("Death Condition");
         yield return new WaitForSeconds(m_DeathTime);
         Destroy(gameObject);
