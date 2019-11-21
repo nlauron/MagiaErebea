@@ -35,7 +35,7 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_default_HeadsetOnHead;
         
-        private static SteamVR_Action_Vector2 p_default_JoystickPosition;
+        private static SteamVR_Action_Boolean p_default_Shoot;
         
         private static SteamVR_Action_Boolean p_default_ActivateMenuRight;
         
@@ -49,7 +49,7 @@ namespace Valve.VR
         
         private static SteamVR_Action_Vector2 p_default_MenuSelectionPosLeft;
         
-        private static SteamVR_Action_Boolean p_default_Shoot;
+        private static SteamVR_Action_Vector2 p_default_JoystickPosition;
         
         private static SteamVR_Action_Vibration p_default_Haptic;
         
@@ -139,11 +139,11 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Vector2 default_JoystickPosition
+        public static SteamVR_Action_Boolean default_Shoot
         {
             get
             {
-                return SteamVR_Actions.p_default_JoystickPosition.GetCopy<SteamVR_Action_Vector2>();
+                return SteamVR_Actions.p_default_Shoot.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -195,11 +195,11 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Boolean default_Shoot
+        public static SteamVR_Action_Vector2 default_JoystickPosition
         {
             get
             {
-                return SteamVR_Actions.p_default_Shoot.GetCopy<SteamVR_Action_Boolean>();
+                return SteamVR_Actions.p_default_JoystickPosition.GetCopy<SteamVR_Action_Vector2>();
             }
         }
         
@@ -279,14 +279,14 @@ namespace Valve.VR
                     SteamVR_Actions.default_SkeletonRightHand,
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.default_HeadsetOnHead,
-                    SteamVR_Actions.default_JoystickPosition,
+                    SteamVR_Actions.default_Shoot,
                     SteamVR_Actions.default_ActivateMenuRight,
                     SteamVR_Actions.default_ActivateMenuLeft,
                     SteamVR_Actions.default_SelectRight,
                     SteamVR_Actions.default_SelectLeft,
                     SteamVR_Actions.default_MenuSelectionPosRight,
                     SteamVR_Actions.default_MenuSelectionPosLeft,
-                    SteamVR_Actions.default_Shoot,
+                    SteamVR_Actions.default_JoystickPosition,
                     SteamVR_Actions.default_Haptic,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.platformer_Jump,
@@ -305,14 +305,14 @@ namespace Valve.VR
                     SteamVR_Actions.default_SkeletonRightHand,
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.default_HeadsetOnHead,
-                    SteamVR_Actions.default_JoystickPosition,
+                    SteamVR_Actions.default_Shoot,
                     SteamVR_Actions.default_ActivateMenuRight,
                     SteamVR_Actions.default_ActivateMenuLeft,
                     SteamVR_Actions.default_SelectRight,
                     SteamVR_Actions.default_SelectLeft,
                     SteamVR_Actions.default_MenuSelectionPosRight,
                     SteamVR_Actions.default_MenuSelectionPosLeft,
-                    SteamVR_Actions.default_Shoot,
+                    SteamVR_Actions.default_JoystickPosition,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Steering,
@@ -333,11 +333,11 @@ namespace Valve.VR
                     SteamVR_Actions.default_GrabPinch,
                     SteamVR_Actions.default_GrabGrip,
                     SteamVR_Actions.default_HeadsetOnHead,
+                    SteamVR_Actions.default_Shoot,
                     SteamVR_Actions.default_ActivateMenuRight,
                     SteamVR_Actions.default_ActivateMenuLeft,
                     SteamVR_Actions.default_SelectRight,
                     SteamVR_Actions.default_SelectLeft,
-                    SteamVR_Actions.default_Shoot,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset};
@@ -345,9 +345,9 @@ namespace Valve.VR
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.buggy_Throttle};
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[] {
-                    SteamVR_Actions.default_JoystickPosition,
                     SteamVR_Actions.default_MenuSelectionPosRight,
                     SteamVR_Actions.default_MenuSelectionPosLeft,
+                    SteamVR_Actions.default_JoystickPosition,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.buggy_Steering};
             Valve.VR.SteamVR_Input.actionsVector3 = new Valve.VR.SteamVR_Action_Vector3[0];
@@ -361,14 +361,14 @@ namespace Valve.VR
                     SteamVR_Actions.default_GrabGrip,
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.default_HeadsetOnHead,
-                    SteamVR_Actions.default_JoystickPosition,
+                    SteamVR_Actions.default_Shoot,
                     SteamVR_Actions.default_ActivateMenuRight,
                     SteamVR_Actions.default_ActivateMenuLeft,
                     SteamVR_Actions.default_SelectRight,
                     SteamVR_Actions.default_SelectLeft,
                     SteamVR_Actions.default_MenuSelectionPosRight,
                     SteamVR_Actions.default_MenuSelectionPosLeft,
-                    SteamVR_Actions.default_Shoot,
+                    SteamVR_Actions.default_JoystickPosition,
                     SteamVR_Actions.platformer_Move,
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Steering,
@@ -388,14 +388,14 @@ namespace Valve.VR
             SteamVR_Actions.p_default_SkeletonRightHand = ((SteamVR_Action_Skeleton)(SteamVR_Action.Create<SteamVR_Action_Skeleton>("/actions/default/in/SkeletonRightHand")));
             SteamVR_Actions.p_default_Squeeze = ((SteamVR_Action_Single)(SteamVR_Action.Create<SteamVR_Action_Single>("/actions/default/in/Squeeze")));
             SteamVR_Actions.p_default_HeadsetOnHead = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/HeadsetOnHead")));
-            SteamVR_Actions.p_default_JoystickPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/JoystickPosition")));
+            SteamVR_Actions.p_default_Shoot = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/Shoot")));
             SteamVR_Actions.p_default_ActivateMenuRight = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/ActivateMenuRight")));
             SteamVR_Actions.p_default_ActivateMenuLeft = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/ActivateMenuLeft")));
             SteamVR_Actions.p_default_SelectRight = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/SelectRight")));
             SteamVR_Actions.p_default_SelectLeft = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/SelectLeft")));
             SteamVR_Actions.p_default_MenuSelectionPosRight = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/MenuSelectionPosRight")));
             SteamVR_Actions.p_default_MenuSelectionPosLeft = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/MenuSelectionPosLeft")));
-            SteamVR_Actions.p_default_Shoot = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/Shoot")));
+            SteamVR_Actions.p_default_JoystickPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/JoystickPosition")));
             SteamVR_Actions.p_default_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/default/out/Haptic")));
             SteamVR_Actions.p_platformer_Move = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/platformer/in/Move")));
             SteamVR_Actions.p_platformer_Jump = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/platformer/in/Jump")));

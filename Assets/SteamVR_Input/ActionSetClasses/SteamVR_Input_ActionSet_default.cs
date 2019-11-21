@@ -89,11 +89,11 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Vector2 JoystickPosition
+        public virtual SteamVR_Action_Boolean Shoot
         {
             get
             {
-                return SteamVR_Actions.default_JoystickPosition;
+                return SteamVR_Actions.default_Shoot;
             }
         }
         
@@ -145,11 +145,11 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean Shoot
+        public virtual SteamVR_Action_Vector2 JoystickPosition
         {
             get
             {
-                return SteamVR_Actions.default_Shoot;
+                return SteamVR_Actions.default_JoystickPosition;
             }
         }
         
