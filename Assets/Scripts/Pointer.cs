@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/**
+ * Handles interaction between player and menus.
+ */
 public class Pointer : MonoBehaviour
 {
     public float m_DefaultLength = 5.0f;
@@ -45,6 +48,7 @@ public class Pointer : MonoBehaviour
         m_LineRenderer.SetPosition(1, endPosition);
     }
 
+    // Raycast when hitting the menu
     private RaycastHit CreateRaycast(float length)
     {
         RaycastHit hit;

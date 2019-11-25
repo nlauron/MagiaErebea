@@ -4,8 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
 
+/**
+ * Blaster
+ * 
+ * Player's Hands, each hand is given their own element and is able to launch projectiles
+ * based on their current element.
+ */
 public class Blaster : MonoBehaviour
 {
+    // Holds the elemental projectile prefab
     [System.Serializable]
     public struct ElementProjectilePair
     {
@@ -13,19 +20,21 @@ public class Blaster : MonoBehaviour
         public GameObject projectile;
     }
 
+    // The list of elements available
     public ElementProjectilePair[] elements;
 
-    // INPUT
+    // Controller Input
     public SteamVR_Action_Boolean m_FireAction = null;
 
-    // SETTINGS
+    // Blaster Settings
     public int m_Force = 200;
     public string m_CurrentElement;
 
-    // REFERENCES
+    // Blaster References
     public Transform m_Barrel = null;
     public GameObject m_ProjectilePrefab = null;
 
+    // SFX
     public AudioSource m_SpellSounds;
     public AudioClip m_FireSpell;
     public AudioClip m_WaterSpell;
@@ -34,18 +43,23 @@ public class Blaster : MonoBehaviour
     public AudioClip m_LightningSpell;
     public AudioClip m_IceSpell;
 
+    // Controller tracking
     private SteamVR_Behaviour_Pose m_Pose = null;
     private Animator m_Animator = null;
 
+    // Initializes at the start of the game
     private void Awake()
     {
+        // Initializes the hands/blasters position and anmations
         m_Pose = GetComponentInParent<SteamVR_Behaviour_Pose>();
         m_Animator = GetComponent<Animator>();
 
+        // Default element set to Fire
         m_CurrentElement = "Fire";
         m_ProjectilePrefab.tag = m_CurrentElement;
     }
 
+    // Checks for input, shoot spell when shoot button is pressed
     private void Update()
     {
         if (m_FireAction.GetLastStateDown(m_Pose.inputSource))
@@ -54,6 +68,7 @@ public class Blaster : MonoBehaviour
         }
     }
 
+    // Initializes projectile and sets element and tag then launches
     private void Fire()
     {
         GameObject projectileObject = null;
@@ -70,6 +85,7 @@ public class Blaster : MonoBehaviour
         targetProjectile.Launch(this);
     }
 
+    // Sets and plays SFX according to current element
     public void ElementSFX(int elementID)
     {
         switch (elementID)

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Controls GameScene Fade through animating the canvas
+ */
 public class SceneFade : MonoBehaviour
 {
     public Animator m_Fader;

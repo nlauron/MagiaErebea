@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
+/**
+ * Input manager for the controller's touchpad. Used for the radial menu on
+ * the players hands to select and change their elements
+ */
 public class InputManager : MonoBehaviour
 {
     // When touching the right touchpad

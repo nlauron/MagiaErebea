@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Manages elements from the radial menu. When element is selected, sends element
+ * info to the players hands to set their new element.
+ */
 public class ElementChanger : MonoBehaviour
 {
+    // Refernces to both hands
     private Blaster handRight;
     private Blaster handLeft;
+    
+    // Element name and ID
     private string elementTag = null;
     private int elementID = 0;
 
+    // Sets element to fire
     public void SetFire()
     {
         elementID = 1;
@@ -16,6 +24,7 @@ public class ElementChanger : MonoBehaviour
         SetElement();
     }
 
+    // Sets element to water
     public void SetWater()
     {
         elementID = 2;
@@ -23,6 +32,7 @@ public class ElementChanger : MonoBehaviour
         SetElement();
     }
 
+    // Sets element to Wind
     public void SetWind()
     {
         elementID = 3;
@@ -30,6 +40,7 @@ public class ElementChanger : MonoBehaviour
         SetElement();
     }
 
+    // Sets element to Earth
     public void SetEarth()
     {
         elementID = 4;
@@ -37,6 +48,7 @@ public class ElementChanger : MonoBehaviour
         SetElement();
     }
 
+    // Sets eleemnt to Lightning
     public void SetLightning()
     {
         elementID = 5;
@@ -44,6 +56,7 @@ public class ElementChanger : MonoBehaviour
         SetElement();
     }
 
+    // Sets element to Ice
     public void SetIce()
     {
         elementID = 6;
@@ -51,6 +64,7 @@ public class ElementChanger : MonoBehaviour
         SetElement();
     }
 
+    // Sends set element info to hands and plays respective SFX
     private void SetElement()
     {
         handRight = GameObject.Find("RightHand").GetComponent<Blaster>();

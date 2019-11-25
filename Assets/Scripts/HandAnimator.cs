@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
+/**
+ * Hand animation when firing a spell, causes hand to turn into a fist.
+ */
 public class HandAnimator : MonoBehaviour
 {
     // Controller input

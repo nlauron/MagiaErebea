@@ -3,32 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
+/**
+ * VRController
+ * 
+ * Controls the movement of the player. Moves using the the controllers
+ * analog sticks and can snap the rotation of the camera using the grip
+ * buttons.
+ */
 public class VRController : MonoBehaviour
 {
+    // Gravity, keep the player grounded
     public float m_Gravity = 100.0f;
-    public float m_Sensitivity = 10f;
+    // public float m_Sensitivity = 10f;
+    // Speed at which the player may move
     public float m_MaxSpeed = 10.0f;
-    public float m_RotateIncrement = 90;
+    // Angle player is rotated when using snap rotation
+    public float m_RotateIncrement = 30;
 
     // Rotation Snap
     public SteamVR_Action_Boolean m_RotatePress = null;
 
     public SteamVR_Action_Vector2 m_MoveValue = null;
 
+    // References to camera and player
     private CharacterController m_CharacterController = null;
     private Transform m_CameraRig = null;
     private Transform m_Head = null;
 
+    // Initializes character controller
     private void Awake()
     {
         m_CharacterController = GetComponent<CharacterController>();
     }
 
+    // Initializes the camera
     private void Start()
     {
         m_CameraRig = SteamVR_Render.Top().origin;
         m_Head = SteamVR_Render.Top().head;
     }
+
 
     private void Update()
     {
