@@ -38,7 +38,7 @@
     {
       "name": "/actions/default/in/HeadsetOnHead",
       "type": "boolean",
-      "requirement": "mandatory"
+      "requirement": "suggested"
     },
     {
       "name": "/actions/default/in/Shoot",
